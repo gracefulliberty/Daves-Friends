@@ -64,7 +64,7 @@ Card = Number | Wild | DrawFourWild | Reverse | Skip | DrawTwo
 
 def can_play_card(top: Card, playing: Card) -> bool:
 
-    if playing == top or type(top) == type(playing):
+    if playing == top or (type(top) == type(playing) and type(playing) != Number):
         return True
 
     match playing:
@@ -73,7 +73,7 @@ def can_play_card(top: Card, playing: Card) -> bool:
         case Skip(c) | Reverse(c) | DrawTwo(c):
             return c == top.color
         case Number(c, n):
-            return c == top.color or n == top.n
+            return c == top.color or n == top.number
             
     return False
     

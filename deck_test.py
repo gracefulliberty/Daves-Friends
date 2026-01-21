@@ -10,12 +10,14 @@ class TestValidCards(unittest.TestCase):
 		for card in deck.cards:
 			self.assertTrue(can_play_card(card, Wild()))
 			self.assertTrue(can_play_card(card, DrawFourWild()))
+	
 	def test_identical_cards(self):
 		deck = Deck()
 		deck.add_default_cards()
 		
 		for card in deck.cards:
 			self.assertTrue(can_play_card(card, card))
+	
 	def test_special(self):
 		deck = Deck()
 		deck.add_default_cards()
@@ -30,6 +32,12 @@ class TestValidCards(unittest.TestCase):
 					self.assertTrue(can_play_card(card, kind))
 				else:
 					self.assertFalse(can_play_card(card, kind))
+	
+	def test_number_cards(self):
+		self.assertTrue(can_play_card(Number(Color.BLUE, 10), Number(Color.RED, 10)))
+		self.assertTrue(can_play_card(Number(Color.BLUE, 10), Number(Color.BLUE, 5)))
+		self.assertFalse(can_play_card(Number(Color.BLUE, 10), Number(Color.RED, 5)))
+	
     
 if __name__ == '__main__':
     unittest.main()

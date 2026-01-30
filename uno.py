@@ -23,7 +23,7 @@ async def ping(interaction: discord.Interaction, text: str | None = None) -> Non
 async def on_ready() -> None:
     # Load lobby commands from lobby.py (extension style: async def setup(bot))
 
-    ext = "controller.lobby_cog"
+    ext = "controllers.lobby"
     if ext not in bot.extensions:
         await bot.load_extension(ext)
 
